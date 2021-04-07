@@ -1,0 +1,43 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Atom | {% if page_name %}{{ page_name }}{% else %} name {% endif %}</title>
+    <link rel="shortcut icon" href="{% static 'library_app/img/favicon.ico' %}" />
+
+    <link rel="stylesheet" href="{% static 'library_app/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'library_app/css/Chart.min.css' %}">
+    <link rel="stylesheet" href="{% static 'library_app/css/style.css' %}">
+</head>
+<body>
+
+    {% include 'library_app/parts/navbar.html' %}
+
+    <div class="d-flex">
+        <div class="options-menu">
+            {% include 'library_app/parts/sidebar.html' %}
+        </div>
+
+        <div class="content-block">
+            <div class="container">
+                {% block content %}
+                {% endblock content %}
+
+                {% include 'library_app/parts/footer.html' %}
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static 'library_app/js/jquery-3.5.1.min.js' %}"></script>
+    <script src="{% static 'library_app/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'library_app/js/Chart.min.js' %}"></script>
+    {% if request.path == '/' %}
+        <script src="{% static 'library_app/js/draw_char.js' %}"></script>
+    {% endif %}
+    <script src="{% static 'library_app/js/scripts.js' %}"></script>
+</body>
+</html>
