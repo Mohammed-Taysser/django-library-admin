@@ -30,10 +30,19 @@ def delete_book(request, book_id):
 
 
 def update_book(request, book_id):
+	current_book = get_object_or_404(models.Book, id=book_id)
 	db_category_objects = models.Category.objects.all()
+	if request.method == 'POST':
+		form_set = forms.AddNewBook(request.POST, request.FILES, instance=current_book)
+		if form_set.is_valid():
+			form_set.save()
+			return redirect('/')
+	else:
+		form_set = forms.AddNewBook(instance=current_book)
 	data = {
 		'page_name': 'update book'.title(),
 		'db_category_objects': db_category_objects,
+		'form_set': form_set
 	}
 	return render(request, 'library_app/pages/update_book.html', data)
 
@@ -55,7 +64,7 @@ def add_book(request):
 		form_set = forms.AddNewBook(request.POST, request.FILES)
 		if form_set.is_valid():
 			form_set.save()
-			redirect('/')
+			return redirect('/')
 	data = {
 		'page_name': 'delete book'.title(),
 		'db_category_objects': db_category_objects,
