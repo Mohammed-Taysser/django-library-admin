@@ -6,7 +6,6 @@ $(function (){
 
     // toggle left menu
     $('#show-more-option').on('click', function (){
-        console.log(230);
         $('.options-menu').toggleClass('open');
         $('.content-block').toggleClass('open');
     })

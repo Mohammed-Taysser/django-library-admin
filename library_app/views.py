@@ -8,6 +8,10 @@ from . import forms
 def dashboard(request):
 	db_books_objects = models.Book.objects.all()#.values('id','author', 'title', 'buy_price', 'rent_price', 'img', 'status')
 	db_category_objects = models.Category.objects.all()
+	if request.method == 'POST':
+		form_set = forms.AddNewCategory(request.POST)
+		if form_set.is_valid():
+			form_set.save()
 	data = {
 		'page_name': 'dashboard'.title(),
 		'db_books_objects': db_books_objects,
