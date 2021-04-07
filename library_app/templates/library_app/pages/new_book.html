@@ -1,0 +1,75 @@
+{% extends 'library_app/base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <div class="container my-3 p-3">
+    <div class="">
+        {{ form_set }}
+    </div>
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="input-title">title <span class="text-danger">*</span></label>
+              <input type="text" class="form-control" id="input-title" name="title">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="input-author">author <span class="text-danger">*</span></label>
+              <input type="text" class="form-control" id="input-author" name="author">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="input-bought-price">bought price <span class="text-danger">*</span></label>
+              <input type="number" class="form-control" id="input-bought-price" name="buy_price">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="input-rent-price">rent price <span class="text-danger">*</span></label>
+              <input type="number" class="form-control" id="input-rent-price" name="rent_price">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <div class="custom-file">
+              <input type="file" class="custom-file-input" id="customFile" name="img">
+              <label class="custom-file-label" for="customFile">Choose book cover</label>
+            </div>
+            </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                  <label for="category-select" hidden></label>
+                <select class="custom-select" id="category-select" name="category">
+                  <option selected disabled value="">category</option>
+                {% for cat in db_category_objects %}
+                    <option value="{{ cat.id }}">{{ cat.name|title }}</option>
+                {% endfor %}
+                </select>
+            </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                  <label for="status-select" hidden></label>
+                <select class="custom-select" name="status" id="status-select">
+                  <option selected disabled value="">Status</option>
+                <option value="available">Available</option>
+                <option value="rent">Rent</option>
+                <option value="sold">Sold</option>
+                </select>
+            </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="area-detail">some detail</label>
+            <textarea class="form-control" id="area-detail" rows="3" name="details"></textarea>
+          </div>
+            <input type="submit" value="Save" class="btn btn-primary btn-block btn-lg">
+        </form>
+    <div class="temp my-5">
+        {{ data_request }}
+    </div>
+    </div>
+
+{% endblock content %}

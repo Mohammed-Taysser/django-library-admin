@@ -3,7 +3,7 @@
 
 {% block content %}
     <div class="nice-shadow border rounded p-3 mt-3">
-        <div class="container my-5">
+        <div class=" my-5">
             <div class="row">
                 <div class="col-md-6 my-3">
                     <h3 class="mt-3 mb-5 d-flex justify-content-between pb-3 border-bottom">total book <span>20</span></h3>
@@ -16,45 +16,46 @@
             </div>
         </div>
     </div>
-    <div class="container">
-        <div class="mx-auto justify-content-center my-5 d-flex">
-            <div class="btn-group" role="group">
-                {% for cat in db_category_objects|slice:3 %}
-                  <button type="button" class="btn btn-primary font-weight-bold">{{ cat.name|title }}</button>
-                {% endfor %}
-            </div>
+    <div class="mx-auto justify-content-center my-5 d-flex">
+        <div class="btn-group" role="group">
+            {% for cat in db_category_objects|slice:3 %}
+              <button type="button" class="btn btn-primary font-weight-bold">{{ cat.name|title }}</button>
+            {% endfor %}
         </div>
-        <div class="books">
+    </div>
+    <div class="books">
+        <div class="row">
             {% for book in db_books_objects %}
-                <div class="media position-relative nice-shadow p-3 my-3 rounded">
-                  <img src="{{ book.img.url }}" class="align-self-center mr-3 rounded" alt="..." width="200px">
-                  <div class="media-body pr-2">
-                    <h3 class="mt-2 d-flex justify-content-between font-weight-bold"><a href="{% url 'library_app:book-detail' book.id %}" class="text-dark">{{ book.title}}</a>
+                <div class="col-lg-6">
+                    <div class="media position-relative nice-shadow p-3 my-3 rounded">
+                        <img src="{{ book.img.url }}" class="align-self-center mr-3 rounded" alt="{{ book.title }} book" width="150px">
+                        <div class="media-body pr-2">
+                        <h3 class="mt-2 d-flex justify-content-between font-weight-bold"><a href="{% url 'library_app:book-detail' book.id %}" class="text-dark">{{ book.title}}</a>
                         <span class="dropdown dropleft">
                             <a href="{% url 'library_app:update-book' book.id %}" data-offset="10,10" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="text-info mr-2"> <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-gear" viewBox="0 0 16 16">
-      <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"></path>
-      <path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z"></path>
+    <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"></path>
+    <path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z"></path>
     </svg></a>
-                          <span class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <span class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             <a class="dropdown-item d-flex justify-content-between text-info" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
-  <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"></path>
-</svg> update</a>
-                          <span class="d-block dropdown-divider"></span>
+    <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"></path>
+    </svg> update</a>
+                            <span class="d-block dropdown-divider"></span>
                             <a class="dropdown-item d-flex justify-content-between text-danger" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
-  <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"></path>
-  <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"></path>
-</svg> delete</a>
-                          </span>
+    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"></path>
+    <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"></path>
+    </svg> delete</a>
                         </span>
-                        </h3>
-                      <h5 class="my-3 font-weight-bold"><a href="#" class="text-muted">{{ book.author}}</a> </h5>
-                    <p>{{ book.details|truncatewords:10|default:'no available detail'}}</p>
-                  <div class="text-center mt-3 d-flex justify-content-between">
-                        <h5 class="p-3 flex-fill border-right">{{ book.pages }} <p class="m-0 mt-2">pages</p></h5>
-                        <h5 class="p-3 flex-fill border-right border-left">{{ book.buy_price }} $<p class="m-0 mt-2">price</p></h5>
-                        <h5 class="p-3 flex-fill border-left"><span class="text-{% if book.status == 'rent' %}warning{% elif book.status == 'sold' %}success{% else %}info{% endif %}">{{ book.status }}</span> <span class="m-0 mt-2 d-block">Status</span></h5>
-                  </div>
-                  </div>
+                </span>
+                </h3>
+                        <h5 class="my-3 font-weight-bold"><a href="#" class="text-muted">{{ book.author}}</a> </h5>
+                        <div class="text-center mt-5 d-flex justify-content-between">
+                    <h6 class="p-3 flex-fill border-right">{{ book.rent_price }} <p class="m-0 mt-2">rent price</p></h6>
+                    <h6 class="p-3 flex-fill border-right border-left">{{ book.buy_price }} $<p class="m-0 mt-2">bought price</p></h6>
+                    <h6 class="p-3 flex-fill border-left"><span class="text-{% if book.status == 'rent' %}warning{% elif book.status == 'sold' %}success{% else %}info{% endif %}">{{ book.status }}</span> <span class="m-0 mt-2 d-block">Status</span></h6>
+                </div>
+                        </div>
+                    </div>
                 </div>
             {% endfor %}
         </div>

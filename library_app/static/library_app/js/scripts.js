@@ -1,5 +1,7 @@
 $(function (){
-        // show current year on footer
+    // custom file input
+    bsCustomFileInput.init()
+    // show current year on footer
     $('current-year').text(new Date().getFullYear());
 
     // toggle left menu

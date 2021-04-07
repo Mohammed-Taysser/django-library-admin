@@ -5,6 +5,7 @@ app_name = 'library_app'
 
 urlpatterns = [
 	path('', views.dashboard, name='dashboard'),
+	path('add-book', views.add_book, name='add-book'),
 	path('book-detail/<int:book_id>', views.book_detail, name='book-detail'),
 	path('update-book/<int:book_id>', views.update_book, name='update-book'),
 	path('delete-book/<int:book_id>', views.delete_book, name='delete-book'),
