@@ -6,27 +6,27 @@
         <div class=" my-5">
             <div class="row">
                 <div class="col-md-6 my-3">
-                    <h3 class="mt-3 mb-5 d-flex justify-content-between pb-3 border-bottom">total book <span>20</span></h3>
+                    <h3 class="mt-3 mb-5 d-flex justify-content-between pb-3 border-bottom">total book <span>{{ all_book_count }}</span></h3>
                     <div class=""><canvas id="visitors-chart" height="200"></canvas></div>
                 </div>
                 <div class="col-md-6 my-3">
-                    <h3 class="mt-3 mb-5 d-flex justify-content-between border-bottom pb-3">Total Earning <span> 250$</span></h3>
+                    <h3 class="mt-3 mb-5 d-flex justify-content-between border-bottom pb-3">Total Earning <span> {{ price_sold|add:price_rent }}$</span></h3>
                     <div class=""><canvas id="sales-chart" height="160"></canvas></div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="mx-auto justify-content-center my-5 d-flex">
+    <div class="mx-auto justify-content-center my-5 d-flex category-buttons">
         <div class="btn-group" role="group">
             {% for cat in db_category_objects|slice:3 %}
-              <button type="button" class="btn btn-primary font-weight-bold">{{ cat.name|title }}</button>
+              <button type="button" class="btn btn-primary font-weight-bold" data-id="{{ cat.id }}">{{ cat.name|title }}</button>
             {% endfor %}
         </div>
     </div>
     <div class="books">
         <div class="row">
             {% for book in db_books_objects %}
-                <div class="col-lg-6">
+                <div class="col-lg-6 all-book book-category-{{ book.category.id }} book-status-{{ book.status }}">
                     <div class="media position-relative nice-shadow p-3 my-3 rounded">
                         <img src="{{ book.img.url }}" class="align-self-center mr-3 rounded" alt="{{ book.title }} book" width="150px">
                         <div class="media-body pr-2">
